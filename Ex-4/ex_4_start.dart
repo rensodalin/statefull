@@ -1,129 +1,136 @@
-//ex3 
-// 1. debugShowCheckedModeBanner: false,
-// is used to remove the DEBUG banner on the top-right corner of the screen.
-
-
 // import 'package:flutter/material.dart';
 
-// List<String> images = [
-//   "assets/w4-s2/bird.jpg",
-//   "assets/w4-s2/bird2.jpg",
-//   "assets/w4-s2/insect.jpg",
-//   "assets/w4-s2/girl.jpg",
-//   "assets/w4-s2/man.jpg",
-// ];
-
-// PART 1: Create two functions
-// void goPrevious() {
-//   print("Previous button clicked");
-// }
-
-// void goNext() {
-//   print("Next button clicked");
-// }
-
-// void main() => runApp(MaterialApp(
-//       debugShowCheckedModeBanner: false, // hides the DEBUG banner
-//       home: Scaffold(
-//         backgroundColor: Colors.green[50],
-//         appBar: AppBar(
-//           backgroundColor: Colors.green[400],
-//           title: const Text('Image viewer'),
-//           actions: <Widget>[
-//             IconButton(
-//               icon: const Icon(Icons.navigate_before),
-//               tooltip: 'Go to the previous image',
-//               onPressed: goPrevious, // call the function
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.fromLTRB(0, 0, 50, 0),
-//               child: IconButton(
-//                 icon: const Icon(Icons.navigate_next),
-//                 tooltip: 'Go to the next image',
-//                 onPressed: goNext, // call the function
-//               ),
-//             ),
-//           ],
-//         ),
-
-//         // Still showing first image only (Part 1)
-//         body: Image.asset(images[0]),
-//       ),
-//     ));
-
-
-//part2 
-import 'package:flutter/material.dart';
-
-List<String> images = [
-  "assets/w4-s2/bird.jpg",
-  "assets/w4-s2/bird2.jpg",
-  "assets/w4-s2/insect.jpg",
-  "assets/w4-s2/girl.jpg",
-  "assets/w4-s2/man.jpg",
-];
-
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ImageGallery(),
-    ));
-
-class ImageGallery extends StatefulWidget {
-  @override
-  State<ImageGallery> createState() => _ImageGalleryState();
+void main() {
+  runApp(
+    const MaterialApp(debugShowCheckedModeBanner: false, home: ScorePage()),
+  );
 }
 
-class _ImageGalleryState extends State<ImageGallery> {
-  int index = 0; // Q1: This is the state we need to keep
-
-  // Go to previous image (circular)
-  void previousImage() {
-    setState(() {
-      index = (index - 1 + images.length) % images.length;
-    });
-  }
-
-  // Go to next image (circular)
-  void nextImage() {
-    setState(() {
-      index = (index + 1) % images.length;
-    });
-  }
+class ScorePage extends StatelessWidget {
+  const ScorePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[50],
+      backgroundColor: Colors.green[100],
       appBar: AppBar(
-        backgroundColor: Colors.green[400],
-        title: const Text('Image viewer'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.navigate_before),
-            tooltip: 'Go to the previous image',
-            onPressed: previousImage,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 50, 0),
-            child: IconButton(
-              icon: const Icon(Icons.navigate_next),
-              tooltip: 'Go to the next image',
-              onPressed: nextImage,
-            ),
-          ),
-        ],
+        title: const Text("My Scores"),
+        backgroundColor: Colors.green,
       ),
-
-      // Q2: The Scaffold (AppBar + Body) is wrapped inside StatefulWidget
-      body: Center(
-        child: Image.asset(
-          images[index], // Display current image
-          fit: BoxFit.contain,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: const [
+            ScoreCard(title: "My score in Flutter", initialScore: 5),
+            SizedBox(height: 20),
+            ScoreCard(title: "My score in Dart", initialScore: 3),
+            SizedBox(height: 20),
+            ScoreCard(title: "My score in React", initialScore: 10),
+          ],
         ),
       ),
     );
   }
 }
 
+class ScoreCard extends StatefulWidget {
+  final String title;
+  final int initialScore;
 
+  const ScoreCard({super.key, required this.title, this.initialScore = 5});
 
+  @override
+  State<ScoreCard> createState() => _ScoreCardState();
+}
+
+class _ScoreCardState extends State<ScoreCard> {
+  late int score;
+
+  @override
+  void initState() {
+    super.initState();
+    score = widget.initialScore;
+  }
+
+  Color getProgressColor() {
+    if (widget.title.contains("Flutter")) return const Color.fromARGB(255, 49, 133, 99);
+    if (widget.title.contains("Dart")) const Color.fromARGB(255, 50, 114, 88);
+    return const Color.fromARGB(255, 28, 73, 56);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double progress = score / 10; // directly proportional to score
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.lightGreen, width: 3),
+        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 6)],
+      ),
+      child: Column(
+        children: [
+          Text(
+            widget.title,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+            ),
+          ),
+          const SizedBox(height: 15),
+
+          // Buttons with score
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.remove, color: Colors.grey),
+                onPressed: score > 0 ? () => setState(() => score--) : null,
+              ),
+              Container(
+                width: 40,
+                alignment: Alignment.center,
+                child: Text(
+                  '$score',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.add, color: Colors.grey),
+                onPressed: score < 10 ? () => setState(() => score++) : null,
+              ),
+            ],
+          ),
+          const SizedBox(height: 15),
+
+          // Progress bar
+          Container(
+            height: 20,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: FractionallySizedBox(
+              alignment: Alignment.centerLeft,
+              widthFactor: progress,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                decoration: BoxDecoration(
+                  color: getProgressColor(),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

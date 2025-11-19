@@ -1,92 +1,92 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// List<String> images = [
-//   "assets/w4-s2/bird.jpg",
-//   "assets/w4-s2/bird2.jpg",
-//   "assets/w4-s2/insect.jpg",
-//   "assets/w4-s2/girl.jpg",
-//   "assets/w4-s2/man.jpg",
-// ];
+List<String> images = [
+  "assets/w4-s2/bird.jpg",
+  "assets/w4-s2/bird2.jpg",
+  "assets/w4-s2/insect.jpg",
+  "assets/w4-s2/girl.jpg",
+  "assets/w4-s2/man.jpg",
+];
 
-// void main() => runApp(MaterialApp(
-//       debugShowCheckedModeBanner: false, // Why this line ? Can you explain it ?
-//       home: Scaffold(
-//         backgroundColor: Colors.green[50],
-//         appBar: AppBar(
-//           backgroundColor: Colors.green[400],
-//           title: const Text('Image viewer'),
-//           actions: <Widget>[
-//             IconButton(
-//               icon: const Icon(Icons.navigate_before),
-//               tooltip: 'Go to the previous image',
-//               onPressed: () => {},
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.fromLTRB(0, 0, 50, 0),
-//               child: IconButton(
-//                 icon: const Icon(Icons.navigate_next),
-//                 tooltip: 'Go to the next image',
-//                 onPressed: () => {},
-//               ),
-//             ),
-//           ],
-//         ),
-//         body: Image.asset(images[0]),
-//       ),
-//     ));
-//ex3 
-// 1. debugShowCheckedModeBanner: false,
-// is used to remove the DEBUG banner on the top-right corner of the screen.
+void main() => runApp(MaterialApp(
+      debugShowCheckedModeBanner: false, // Why this line ? Can you explain it ?
+      home: Scaffold(
+        backgroundColor: Colors.green[50],
+        appBar: AppBar(
+          backgroundColor: Colors.green[400],
+          title: const Text('Image viewer'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.navigate_before),
+              tooltip: 'Go to the previous image',
+              onPressed: () => {},
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 50, 0),
+              child: IconButton(
+                icon: const Icon(Icons.navigate_next),
+                tooltip: 'Go to the next image',
+                onPressed: () => {},
+              ),
+            ),
+          ],
+        ),
+        body: Image.asset(images[0]),
+      ),
+    ));
+ex3 
+1. debugShowCheckedModeBanner: false,
+is used to remove the DEBUG banner on the top-right corner of the screen.
 
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// List<String> images = [
-//   "assets/w4-s2/bird.jpg",
-//   "assets/w4-s2/bird2.jpg",
-//   "assets/w4-s2/insect.jpg",
-//   "assets/w4-s2/girl.jpg",
-//   "assets/w4-s2/man.jpg",
-// ];
+List<String> images = [
+  "assets/w4-s2/bird.jpg",
+  "assets/w4-s2/bird2.jpg",
+  "assets/w4-s2/insect.jpg",
+  "assets/w4-s2/girl.jpg",
+  "assets/w4-s2/man.jpg",
+];
 
-// PART 1: Create two functions
-// void goPrevious() {
-//   print("Previous button clicked");
-// }
+PART 1: Create two functions
+void goPrevious() {
+  print("Previous button clicked");
+}
 
-// void goNext() {
-//   print("Next button clicked");
-// }
+void goNext() {
+  print("Next button clicked");
+}
 
-// void main() => runApp(MaterialApp(
-//       debugShowCheckedModeBanner: false, // hides the DEBUG banner
-//       home: Scaffold(
-//         backgroundColor: Colors.green[50],
-//         appBar: AppBar(
-//           backgroundColor: Colors.green[400],
-//           title: const Text('Image viewer'),
-//           actions: <Widget>[
-//             IconButton(
-//               icon: const Icon(Icons.navigate_before),
-//               tooltip: 'Go to the previous image',
-//               onPressed: goPrevious, // call the function
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.fromLTRB(0, 0, 50, 0),
-//               child: IconButton(
-//                 icon: const Icon(Icons.navigate_next),
-//                 tooltip: 'Go to the next image',
-//                 onPressed: goNext, // call the function
-//               ),
-//             ),
-//           ],
-//         ),
+void main() => runApp(MaterialApp(
+      debugShowCheckedModeBanner: false, // hides the DEBUG banner
+      home: Scaffold(
+        backgroundColor: Colors.green[50],
+        appBar: AppBar(
+          backgroundColor: Colors.green[400],
+          title: const Text('Image viewer'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.navigate_before),
+              tooltip: 'Go to the previous image',
+              onPressed: goPrevious, // call the function
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 50, 0),
+              child: IconButton(
+                icon: const Icon(Icons.navigate_next),
+                tooltip: 'Go to the next image',
+                onPressed: goNext, // call the function
+              ),
+            ),
+          ],
+        ),
 
-//         // Still showing first image only (Part 1)
-//         body: Image.asset(images[0]),
-//       ),
-//     ));
+        // Still showing first image only (Part 1)
+        body: Image.asset(images[0]),
+      ),
+    ));
 
-//part2
+part2
 import 'package:flutter/material.dart';
 
 List<String> images = [
