@@ -195,12 +195,10 @@ class FavoriteCard extends StatefulWidget {
   final bool isFavorite;
 
   const FavoriteCard({
-    Key? key,
     required this.title,
     required this.description,
     this.isFavorite = false,
-  }) : super(key: key);
-
+  }) ;
   @override
   State<FavoriteCard> createState() => _FavoriteCardState();
 }
