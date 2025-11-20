@@ -99,11 +99,10 @@ class FavoriteCard extends StatelessWidget {
   final bool isFavorite;
 
   const FavoriteCard({
-    Key? key,
     required this.title,
     required this.description,
     this.isFavorite = false,
-  }) : super(key: key);
+  }) 
 
   @override
   Widget build(BuildContext context) {

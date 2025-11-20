@@ -53,10 +53,15 @@ class _ScoreCardState extends State<ScoreCard> {
   }
 
   Color getProgressColor() {
-    if (widget.title.contains("Flutter")) return const Color.fromARGB(255, 49, 133, 99);
-    if (widget.title.contains("Dart")) const Color.fromARGB(255, 50, 114, 88);
+    if (widget.title.contains("Flutter")) {
+      return const Color.fromARGB(255, 49, 133, 99);
+    }
+    if (widget.title.contains("Dart")) {
+      return const Color.fromARGB(255, 50, 114, 88);
+    }
     return const Color.fromARGB(255, 28, 73, 56);
   }
+
 
   @override
   Widget build(BuildContext context) {
