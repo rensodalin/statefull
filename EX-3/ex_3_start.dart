@@ -107,16 +107,13 @@ class ImageGallery extends StatefulWidget {
 }
 
 class _ImageGalleryState extends State<ImageGallery> {
-  int index = 0; // Q1: This is the state we need to keep
-
-  // Go to previous image (circular)
+  int index = 0; 
+  
   void previousImage() {
     setState(() {
       index = (index - 1 + images.length) % images.length;
     });
   }
-
-  // Go to next image (circular)
   void nextImage() {
     setState(() {
       index = (index + 1) % images.length;
@@ -146,11 +143,9 @@ class _ImageGalleryState extends State<ImageGallery> {
           ),
         ],
       ),
-
-      // Q2: The Scaffold (AppBar + Body) is wrapped inside StatefulWidget
       body: Center(
         child: Image.asset(
-          images[index], // Display current image
+          images[index], 
           fit: BoxFit.contain,
         ),
       ),

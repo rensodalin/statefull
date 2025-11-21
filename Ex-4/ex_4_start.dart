@@ -1,4 +1,4 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(
@@ -57,11 +57,10 @@ class _ScoreCardState extends State<ScoreCard> {
       return const Color.fromARGB(255, 49, 133, 99);
     }
     if (widget.title.contains("Dart")) {
-      return const Color.fromARGB(255, 50, 114, 88);
+      return const Color.fromARGB(255, 105, 141, 126);
     }
     return const Color.fromARGB(255, 28, 73, 56);
   }
-
 
   @override
   Widget build(BuildContext context) {
